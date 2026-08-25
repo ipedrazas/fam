@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  /** The most characteristic sentence in this meetup's world. Set large. */
+  line: string;
+  /**
+   * A real photograph of the actual room, with actual people in it, beats any graphic.
+   * Drop one in src/images/ and pass it here — see public/hero/HERO-PHOTO.md.
+   * Until then the black field is the design, not a hole.
+   */
+  photo?: ImageMetadata;
+  photoAlt?: string;
+}
+
+const { line, photo, photoAlt } = Astro.props;
+---
+
+<section class:list={['title-card', !photo && 'title-card--field']}>
+  {
+    photo && (
+      <Fragment>
+        <Image
+          class="title-card__photo"
+          src={photo}
+          alt={photoAlt ?? ''}
+          widths={[720, 1200, 1800]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="title-card__scrim" />
+      </Fragment>
+    )
+  }
+  <div class="shell title-card__inner">
+    <h1 class="title-card__line">{line}</h1>
+    <slot />
+  </div>
+</section>

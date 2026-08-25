@@ -1,0 +1,100 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ContactSheet from '../../components/ContactSheet.astro';
+import CallSheet from '../../components/CallSheet.astro';
+import LumaRegisterButton from '../../components/LumaRegisterButton.astro';
+import { longDate } from '../../lib/date';
+import { getPastEvents } from '../../lib/past-events';
+
+export const getStaticPaths = (async () => {
+  const events = await getPastEvents();
+  // Only events with a written recap get their own page. An event with photos and a
+  // one-line blurb is complete on the contact sheet; a page for it would be a thin page.
+  return events
+    .filter((entry) => entry.body?.trim())
+    .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+const e = entry.data;
+const { Content } = await render(entry);
+
+const num = String(e.number).padStart(2, '0');
+const ogImage = e.images[0]?.src.src;
+---
+
+<Base
+  title={`FAM ${num} — ${e.title}`}
+  description={e.blurb}
+  image={ogImage}
+  luma
+>
+  <section class="band band--tight">
+    <div class="shell">
+      <p class="label">FAM {num} · Past event</p>
+      <h1 style="margin-block-start: var(--space-2xs)">{e.title}</h1>
+      <div style="margin-block-start: var(--space-l)">
+        <CallSheet
+          label="Details of this event"
+          rows={[
+            { key: 'Date', val: longDate(e.date) },
+            { key: 'Where', val: e.venue },
+            ...(e.attendees ? [{ key: 'In the room', val: `${e.attendees}` }] : []),
+            ...(e.speakers.length
+              ? [
+                  {
+                    key: e.speakers.length > 1 ? 'Speakers' : 'Speaker',
+                    val: e.speakers.map((s) => (s.role ? `${s.name} (${s.role})` : s.name)).join(', '),
+                  },
+                ]
+              : []),
+          ]}
+        />
+      </div>
+      <p class="lede" style="margin-block-start: var(--space-l)">{e.blurb}</p>
+    </div>
+  </section>
+
+  <section class="band band--tight">
+    <div class="shell">
+      <h2 class="label" style="margin-block-end: var(--space-m)">The sheet</h2>
+      <ContactSheet entry={entry} showHead={false} eager />
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="recap">
+    <div class="shell prose">
+      <h2 id="recap">How it went</h2>
+      <Content />
+      {
+        e.links.length > 0 && (
+          <>
+            <h3>Afterwards</h3>
+            <ul>
+              {e.links.map((l) => (
+                <li>
+                  <a href={l.url} rel="noopener">
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+      <p><a href="/past">Back to the archive</a></p>
+    </div>
+  </section>
+
+  <section class="band band--dim" aria-labelledby="next-one">
+    <div class="shell">
+      <h2 id="next-one">Be in the next one</h2>
+      <p class="lede" style="margin-block-start: var(--space-s); margin-block-end: var(--space-l)">
+        Same room, different argument.
+      </p>
+      <LumaRegisterButton label="Save me a spot" />
+    </div>
+  </section>
+</Base>

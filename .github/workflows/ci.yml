@@ -1,0 +1,36 @@
+name: Build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: astro check && astro build
+    runs-on: ubuntu-latest
+    env:
+      ASTRO_TELEMETRY_DISABLED: '1'
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # `npm run build` runs astro check first, so a missing alt text, a broken content
+      # schema or a type error fails here rather than on the site.
+      - run: npm run build
+
+      - name: Check nothing links to a page that does not exist
+        run: ./scripts/check-links.sh

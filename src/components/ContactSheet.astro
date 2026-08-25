@@ -1,0 +1,121 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Frame from './Frame.astro';
+import { slate } from '../lib/date';
+
+interface Props {
+  entry: CollectionEntry<'past-events'>;
+  /** Link the sheet header through to the full recap page. */
+  href?: string;
+  /** Headings inside the sheet sit under the page h1. */
+  headingLevel?: 2 | 3;
+  eager?: boolean;
+  /** The detail page already has the title in its h1 — don't print it twice. */
+  showHead?: boolean;
+  /** Likewise the blurb and credits. */
+  showMargin?: boolean;
+}
+
+const {
+  entry,
+  href,
+  headingLevel = 2,
+  eager = false,
+  showHead = true,
+  showMargin = true,
+} = Astro.props;
+const e = entry.data;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+
+const num = String(e.number).padStart(2, '0');
+const slateLine = [
+  slate(e.date),
+  e.venue.toUpperCase(),
+  e.attendees ? `${e.attendees} in the room` : null,
+]
+  .filter(Boolean)
+  .join(' · ');
+---
+
+<article class="contact-sheet">
+  {showHead && (
+  <div class="sheet__head">
+    <Heading class="sheet__title">
+      {
+        href ? (
+          <a href={href}>
+            FAM {num} — {e.title}
+          </a>
+        ) : (
+          <Fragment>
+            FAM {num} — {e.title}
+          </Fragment>
+        )
+      }
+    </Heading>
+    <p class="sheet__slate">{slateLine}</p>
+  </div>
+  )}
+
+  <ul class="sheet__frames">
+    {
+      e.images.map((img, i) => (
+        <Frame
+          src={img.src}
+          alt={img.alt}
+          index={i}
+          roll={e.number}
+          selected={i === e.select}
+          eager={eager && i < 4}
+        />
+      ))
+    }
+  </ul>
+
+  {showMargin && (
+  <div class="sheet__margin">
+    <div>
+      <p class="sheet__blurb">{e.blurb}</p>
+      {
+        href && (
+          <p style="margin-block-start: var(--space-s)">
+            <a class="link" href={href}>
+              Read the full write-up
+            </a>
+          </p>
+        )
+      }
+    </div>
+
+    <dl class="sheet__credits">
+      {
+        e.speakers.length > 0 && (
+          <Fragment>
+            <dt>{e.speakers.length > 1 ? 'Speakers' : 'Speaker'}</dt>
+            {e.speakers.map((s) => (
+              <dd>
+                {s.link ? <a href={s.link} rel="noopener">{s.name}</a> : s.name}
+                {s.role && <span> — {s.role}</span>}
+              </dd>
+            ))}
+          </Fragment>
+        )
+      }
+      {
+        e.links.length > 0 && (
+          <Fragment>
+            <dt>Afterwards</dt>
+            {e.links.map((l) => (
+              <dd>
+                <a href={l.url} rel="noopener">
+                  {l.label}
+                </a>
+              </dd>
+            ))}
+          </Fragment>
+        )
+      }
+    </dl>
+  </div>
+  )}
+</article>

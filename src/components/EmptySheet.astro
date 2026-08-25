@@ -1,0 +1,52 @@
+---
+/**
+ * The archive before there is an archive: a blank proof sheet.
+ *
+ * This is deliberately not a "no results" message. An unexposed contact sheet is a real
+ * object — the frames and the edge codes are printed whether or not anything was shot —
+ * and it is the honest picture of where this meetup currently is. It also means the
+ * signature element of the site is legible from day one, before a single photograph exists.
+ */
+interface Props {
+  /** How many blank frames to print. Two full rows at desktop width. */
+  frames?: number;
+  roll?: number;
+}
+
+const { frames = 8, roll = 1 } = Astro.props;
+
+// Same 35mm numbering the real sheets use, so the empty one and the first real one line up.
+const base = 10 + roll * 3;
+const codes = Array.from(
+  { length: frames },
+  (_, i) => `${base + Math.floor(i / 2)}${i % 2 ? 'A' : ''}`,
+);
+---
+
+<article class="contact-sheet contact-sheet--blank">
+  <div class="sheet__head">
+    <h2 class="sheet__title">Nothing on this roll yet</h2>
+    <p class="sheet__slate">Unexposed</p>
+  </div>
+
+  <ul class="sheet__frames" aria-hidden="true">
+    {
+      codes.map((code) => (
+        <li class="frame">
+          <div class="frame__blank" />
+          <p class="frame__code">
+            <b>{code}</b>
+          </p>
+        </li>
+      ))
+    }
+  </ul>
+
+  <div class="sheet__margin">
+    <div>
+      <p class="sheet__blurb">
+        <slot />
+      </p>
+    </div>
+  </div>
+</article>

@@ -1,0 +1,56 @@
+---
+/*
+ ╔══════════════════════════════════════════════════════════════════════════════╗
+ ║  PASTE THE CURRENT SNIPPET FROM LUMA. DO NOT EDIT BY HAND.                   ║
+ ║                                                                              ║
+ ║  Manage Event → More → Embed → "Checkout button"                             ║
+ ║                                                                              ║
+ ║  Copy the real `evt-…` id and the href into src/config.ts → featuredEvent.    ║
+ ║  Leave `lumaEventId` as null and this falls back to a plain link to the       ║
+ ║  calendar. Nothing breaks and nobody sees an error.                           ║
+ ║                                                                              ║
+ ║  The checkout-button.js script is loaded ONCE, deferred, by Base.astro.       ║
+ ╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+import { featuredEvent, luma } from '../config';
+
+interface Props {
+  label?: string;
+  /** Rendered under the button. Set false where the surrounding copy already says it. */
+  showFallback?: boolean;
+}
+
+const { label = 'Save me a spot', showFallback = true } = Astro.props;
+
+const hasEvent = Boolean(featuredEvent.lumaEventId);
+const href = hasEvent ? featuredEvent.lumaEventUrl : luma.calendarUrl;
+---
+
+<div class="stack">
+  {
+    hasEvent ? (
+      <a
+        href={featuredEvent.lumaEventUrl}
+        class="luma-checkout--button"
+        data-luma-action="checkout"
+        data-luma-event-id={featuredEvent.lumaEventId}
+        rel="noopener"
+      >
+        {label}
+      </a>
+    ) : (
+      <a class="btn btn--primary" href={luma.calendarUrl} rel="noopener">
+        {label}
+      </a>
+    )
+  }
+
+  {
+    showFallback && (
+      <p class="fallback-link">
+        Booking is handled by <a href={href} rel="noopener">Luma</a>. It's free, it takes
+        about twenty seconds, and it's how we know roughly how many chairs to put out.
+      </p>
+    )
+  }
+</div>

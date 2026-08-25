@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import CallSheet from '../components/CallSheet.astro';
+import LumaCalendar from '../components/LumaCalendar.astro';
+import LumaRegisterButton from '../components/LumaRegisterButton.astro';
+import { featuredEvent, luma } from '../config';
+import { longDate } from '../lib/date';
+
+const start = new Date(featuredEvent.start);
+---
+
+<Base
+  title="Events"
+  description="Every upcoming FAM night in Folkestone — dates, venue and how to save yourself a spot. Free, monthly, and no technical background required."
+  image="/og/events.png"
+  luma
+>
+  <section class="band band--tight">
+    <div class="shell">
+      <h1>The first one, and the ones after that</h1>
+      <div style="margin-block-start: var(--space-l)">
+        <CallSheet
+          label="Details of the next event"
+          rows={[
+            { key: 'First', val: `FAM ${String(featuredEvent.number).padStart(2, '0')} — ${featuredEvent.title}` },
+            { key: 'When', val: `${longDate(start)}, doors ${featuredEvent.doors}` },
+            { key: 'Where', val: `${featuredEvent.venue}, ${featuredEvent.venueAddress}` },
+            { key: 'Cost', val: featuredEvent.cost, mark: true },
+            { key: 'Then', val: 'Once a month' },
+            { key: 'Access', val: 'Step-free, ground floor, no hearing loop' },
+          ]}
+        />
+      </div>
+      <div style="margin-block-start: var(--space-l)">
+        <LumaRegisterButton label="Save me a spot" />
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dim" aria-labelledby="calendar">
+    <div class="shell">
+      <h2 id="calendar">The calendar</h2>
+      <p class="lede" style="margin-block-start: var(--space-s); margin-block-end: var(--space-l)">
+        Everything lives on Luma — dates, tickets, reminders, the lot. Follow the calendar
+        and you will hear about each one without us having to run a mailing list.
+      </p>
+      <LumaCalendar title="FAM upcoming events calendar" />
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="how-it-works">
+    <div class="shell prose">
+      <h2 id="how-it-works">How booking works</h2>
+      <p>
+        It is free and there is no ticket to print. You register on Luma, you get a
+        reminder the day before, and you turn up. The only reason we ask at all is so we
+        know roughly how many chairs to put out and whether we need to warn the bar.
+      </p>
+      <p>
+        If a night fills up, Luma runs a waiting list. If you put your name down and then
+        cannot make it, cancelling genuinely helps somebody else get in — especially for the
+        first one, where we have no idea yet how many people to expect.
+      </p>
+      <p>
+        No account, no login, nothing to install. If you would rather not use Luma at all,{' '}
+        <a href="mailto:fam@andcake.dev">email us</a> and we will put your name on the
+        list by hand.
+      </p>
+      <p>
+        <a href={luma.calendarUrl} rel="noopener">Open the FAM calendar on Luma</a>
+      </p>
+    </div>
+  </section>
+</Base>

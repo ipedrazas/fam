@@ -1,0 +1,71 @@
+---
+import '@fontsource/redaction-20/latin-400.css';
+import '@fontsource-variable/public-sans/wght.css';
+import '@fontsource/courier-prime/latin-400.css';
+import '@fontsource/courier-prime/latin-700.css';
+
+import '../styles/tokens.css';
+import '../styles/base.css';
+import '../styles/components.css';
+
+import Seo from '../components/Seo.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import { analytics } from '../config';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  noindex?: boolean;
+  /**
+   * Load the Luma checkout script. Once per page, deferred, from here only —
+   * never from inside a component, or it ends up on the page twice.
+   */
+  luma?: boolean;
+}
+
+const { title, description, image, noindex, luma = false } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#101109" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap.xml" />
+    <Seo title={title} description={description} image={image} noindex={noindex} />
+
+    {
+      /* No cookies, no banner. Off by default — see src/config.ts and /privacy. */
+      analytics.enabled && analytics.provider === 'plausible' && (
+        <script is:inline defer data-domain={analytics.domain} src={analytics.scriptUrl} />
+      )
+    }
+    {
+      analytics.enabled && analytics.provider === 'umami' && (
+        <script is:inline defer data-website-id={analytics.domain} src={analytics.scriptUrl} />
+      )
+    }
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter />
+
+    {
+      /* PASTE-ONLY. The one piece of third-party JavaScript on this site.
+         Everything it powers has a plain <a> fallback that works without it. */
+      luma && (
+        <script id="luma-checkout" is:inline defer src="https://embed.lu.ma/checkout-button.js" />
+      )
+    }
+  </body>
+</html>

@@ -1,0 +1,31 @@
+# Runs the site on a VM. One container, no database, no volumes, no secrets.
+#
+#   docker compose pull && docker compose up -d
+#
+# Put a reverse proxy (Caddy, Traefik, or nginx on the host) in front of this for TLS.
+services:
+  fam:
+    image: ghcr.io/ipedrazas/fam:latest
+    container_name: fam
+    restart: unless-stopped
+    ports:
+      # host:container — the proxy in front of this terminates TLS on 443.
+      - "8080:80"
+    read_only: true
+    tmpfs:
+      - /var/cache/nginx
+      - /var/run
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
