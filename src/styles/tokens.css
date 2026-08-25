@@ -30,7 +30,7 @@
   --rule-on-dark: color-mix(in srgb, var(--sheet) 22%, transparent);
 
   /* ── Type ───────────────────────────────────────────────────────────────── */
-  --font-display: 'Redaction 20', 'Bagnard', Georgia, 'Times New Roman', serif;
+  --font-display: 'Bagnard', Georgia, 'Times New Roman', serif;
   --font-body: 'Public Sans Variable', 'Public Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'Courier Prime', ui-monospace, 'Courier New', monospace;
 
