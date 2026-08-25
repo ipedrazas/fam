@@ -1,0 +1,31 @@
+---
+/**
+ * The block that tells you where to be. Every page has one, directly under the h1.
+ * It is a hospitality document: nobody should arrive at this thing confused.
+ */
+interface Row {
+  key: string;
+  val: string;
+  /** Wraps the value in a chinagraph highlight. Use once per block at most. */
+  mark?: boolean;
+}
+
+interface Props {
+  rows: Row[];
+  label?: string;
+}
+
+const { rows, label } = Astro.props;
+---
+
+<dl class="callsheet" aria-label={label}>
+  {
+    rows.map((row) => (
+      <div class="callsheet__row">
+        <dt class="callsheet__key">{row.key}</dt>
+        <dd class="callsheet__val">{row.mark ? <em>{row.val}</em> : row.val}</dd>
+      </div>
+    ))
+  }
+  <slot />
+</dl>

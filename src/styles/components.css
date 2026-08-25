@@ -1,0 +1,388 @@
+/* ══ Site header ═══════════════════════════════════════════════════════════ */
+.site-header {
+  border-bottom: 1px solid var(--rule);
+  background: var(--sheet);
+}
+.site-header__inner {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-m);
+  flex-wrap: wrap;
+  padding-block: var(--space-s);
+}
+.wordmark {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+.wordmark span { color: var(--edge); font-family: var(--font-mono); font-size: var(--step--1); }
+.site-nav ul {
+  display: flex;
+  gap: var(--space-m);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.site-nav a {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  padding-block: var(--space-3xs);
+  border-bottom: 2px solid transparent;
+}
+.site-nav a:hover { border-bottom-color: var(--select); }
+.site-nav a[aria-current='page'] { border-bottom-color: var(--select); }
+
+/* ══ Title card — the first frame of the record ════════════════════════════ */
+.title-card {
+  position: relative;
+  background: var(--rebate);
+  color: var(--sheet);
+  isolation: isolate;
+}
+.title-card__photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+}
+.title-card__photo + .title-card__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: color-mix(in srgb, var(--rebate) 62%, transparent);
+}
+.title-card__inner {
+  padding-block: clamp(var(--space-2xl), 12vh, var(--space-4xl));
+}
+.title-card__line {
+  font-family: var(--font-display);
+  font-size: var(--step-5);
+  line-height: var(--leading-display);
+  letter-spacing: -0.02em;
+  max-width: var(--measure-tight);
+  color: var(--sheet);
+  margin: 0;
+}
+.title-card__meta {
+  margin-block-start: var(--space-l);
+  color: var(--edge-on-dark);
+  font-family: var(--font-mono);
+  font-size: var(--step-0);
+  line-height: var(--leading-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.title-card__meta strong { color: var(--sheet); font-weight: 700; }
+.title-card__actions { margin-block-start: var(--space-l); }
+
+/* When there's no photograph yet, the black field is the design — not a hole. */
+.title-card--field .title-card__inner { padding-block: clamp(var(--space-3xl), 18vh, var(--space-4xl)); }
+
+/* ══ Call sheet — the block that tells you where to be ═════════════════════ */
+.callsheet {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding-block: var(--space-xs);
+  max-width: 46rem;
+}
+.band--rebate .callsheet,
+.title-card .callsheet { border-color: var(--rule-on-dark); }
+
+.callsheet__row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 9rem) 1fr;
+  gap: var(--space-2xs) var(--space-m);
+  padding-block: var(--space-2xs);
+  align-items: baseline;
+}
+.callsheet__key {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--edge);
+}
+.band--rebate .callsheet__key,
+.title-card .callsheet__key { color: var(--edge-on-dark); }
+.callsheet__val {
+  font-family: var(--font-mono);
+  font-size: var(--step-0);
+  line-height: var(--leading-mono);
+}
+/* The chinagraph highlight. `box-decoration-break: clone` keeps the padding on both
+   halves when the value wraps, so it reads as one pencil stroke rather than two boxes. */
+.callsheet__val em {
+  font-style: normal;
+  background: var(--select);
+  color: var(--rebate);
+  padding: 0 0.3em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+@media (max-width: 30rem) {
+  .callsheet__row { grid-template-columns: 1fr; gap: 0; padding-block: var(--space-xs); }
+}
+
+/* ══ Running order — a genuine sequence, so it gets timecodes ══════════════ */
+.runner { list-style: none; padding: 0; margin: 0; max-width: 46rem; }
+.runner li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: var(--space-2xs) var(--space-m);
+  padding-block: var(--space-s);
+}
+.runner li + li { border-top: 1px solid var(--rule); }
+.runner time {
+  font-family: var(--font-mono);
+  font-size: var(--step-0);
+  color: var(--edge);
+  font-variant-numeric: tabular-nums;
+}
+.runner b { font-weight: 650; display: block; }
+.runner p { margin-block-start: var(--space-3xs); }
+
+@media (max-width: 30rem) {
+  .runner li { grid-template-columns: 1fr; }
+}
+
+/* ══ THE CONTACT SHEET ═════════════════════════════════════════════════════
+   If the gutters go white or the edge codes come off, the idea is gone.
+   Frames touch. The black between them is film, not whitespace.                */
+.contact-sheet {
+  background: var(--rebate);
+  color: var(--sheet);
+  border-radius: var(--radius-frame);
+  overflow: hidden;
+  padding: var(--space-m);
+}
+.contact-sheet + .contact-sheet { margin-block-start: var(--space-2xl); }
+
+.sheet__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2xs) var(--space-m);
+  padding-block-end: var(--space-s);
+}
+.sheet__title {
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: var(--leading-display);
+  color: var(--sheet);
+  margin: 0;
+}
+.sheet__title a { text-decoration: none; border-bottom: 2px solid transparent; }
+.sheet__title a:hover { border-bottom-color: var(--select); }
+.sheet__slate {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: var(--leading-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--edge-on-dark);
+}
+
+.sheet__frames {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sprocket);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.frame { position: relative; }
+.frame__link {
+  display: block;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: transform 120ms ease, border-color 120ms ease;
+}
+.frame__link:hover { transform: translateY(-2px); border-color: var(--select); }
+.frame__img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: #000;
+}
+/* The edge code, printed in the black under the frame. Generated, never authored. */
+.frame__code {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--edge-on-dark);
+  padding-block-start: 2px;
+  display: flex;
+  gap: 0.6em;
+}
+.frame__code b { color: var(--sheet); font-weight: 400; }
+
+/* An unexposed frame. Lifted a shade off the rebate so it reads as film rather than as a
+   hole in the page, and the edge codes are printed underneath exactly as they would be. */
+.frame__blank {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background: color-mix(in srgb, var(--sheet) 5%, var(--rebate));
+  border: 1px solid var(--rule-on-dark);
+}
+.contact-sheet--blank .sheet__slate { letter-spacing: 0.16em; }
+
+/* The picture editor's "this one". Wax pencil, slightly off-true, overshooting
+   where it started — which is the whole tell. */
+.frame__oval {
+  position: absolute;
+  inset: -6px 2px auto 2px;
+  width: calc(100% - 4px);
+  aspect-ratio: 3 / 2;
+  pointer-events: none;
+  overflow: visible;
+  transform: rotate(-3.5deg);
+}
+.frame__oval path {
+  fill: none;
+  stroke: var(--select);
+  stroke-width: 5;
+  stroke-linecap: round;
+  opacity: 0.92;
+}
+
+.sheet__margin {
+  padding-block-start: var(--space-m);
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: var(--space-m) var(--space-xl);
+}
+.sheet__blurb { max-width: 52ch; color: var(--sheet); }
+.sheet__credits { font-family: var(--font-mono); font-size: var(--step--1); line-height: 1.6; }
+.sheet__credits dt {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--edge-on-dark);
+  margin-block-start: var(--space-2xs);
+}
+.sheet__credits dd { margin: 0; }
+.sheet__credits a { color: var(--mark-on-dark); text-decoration: underline; text-underline-offset: 0.18em; }
+
+@media (max-width: 64rem) {
+  .sheet__frames { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 40rem) {
+  /* Two-up, never one-up. A single column stops being a contact sheet. */
+  .sheet__frames { grid-template-columns: repeat(2, 1fr); }
+  .sheet__margin { grid-template-columns: 1fr; }
+  .contact-sheet { padding: var(--space-s); }
+  .frame__code { font-size: 0.65rem; letter-spacing: 0.06em; }
+}
+
+/* ══ FAQ ═══════════════════════════════════════════════════════════════════ */
+.faq { max-width: var(--measure); }
+.faq dt {
+  font-weight: 650;
+  font-size: var(--step-1);
+  margin-block-start: var(--space-l);
+  line-height: 1.3;
+}
+.faq dd { margin: var(--space-2xs) 0 0; }
+.faq dd + dd { margin-block-start: var(--space-2xs); }
+
+/* The most important answer on the site. It does not get buried. */
+.faq__lead {
+  background: var(--sheet-dim);
+  border-inline-start: 4px solid var(--select);
+  padding: var(--space-m) var(--space-m) var(--space-m) var(--space-s);
+  margin-block-end: var(--space-l);
+}
+.faq__lead dt { margin-block-start: 0; font-size: var(--step-1); }
+.faq__lead dd { font-size: var(--step-1); line-height: 1.45; }
+
+/* ══ Luma embeds ═══════════════════════════════════════════════════════════ */
+.luma-embed {
+  width: 100%;
+  min-height: 720px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-frame);
+  background: var(--sheet-dim);
+}
+@media (max-width: 40rem) { .luma-embed { min-height: 560px; } }
+
+/* Luma injects its own class on the checkout button. Match our buttons exactly so
+   it never lands looking like someone else's widget. */
+a.luma-checkout--button {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--step-0);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.2;
+  padding: 0.85em 1.4em;
+  border: 2px solid var(--select);
+  border-radius: var(--radius-frame);
+  background: var(--select);
+  color: var(--rebate);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ══ Cards / grids used on the landing page ════════════════════════════════ */
+.cols {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: var(--space-l);
+}
+.cols h3 { margin-block-end: var(--space-2xs); }
+
+.strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sprocket);
+  background: var(--rebate);
+  padding: var(--sprocket);
+  border-radius: var(--radius-frame);
+}
+.strip img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+
+/* ══ Site footer ═══════════════════════════════════════════════════════════ */
+.site-footer {
+  background: var(--rebate);
+  color: var(--edge-on-dark);
+  padding-block: var(--space-xl);
+}
+.site-footer__inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-l);
+}
+.site-footer h2 {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--edge-on-dark);
+  margin-block-end: var(--space-2xs);
+}
+.site-footer ul { list-style: none; padding: 0; margin: 0; }
+.site-footer li + li { margin-block-start: var(--space-3xs); }
+.site-footer a { color: var(--sheet); text-decoration: none; border-bottom: 1px solid var(--rule-on-dark); }
+.site-footer a:hover { border-bottom-color: var(--select); }
+.site-footer .wordmark { color: var(--sheet); }
+.site-footer__colophon {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  line-height: 1.6;
+  max-width: 34ch;
+}

@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import { site } from '../config';
+// The canonical copy lives at the repo root so GitHub picks it up too. One file, one
+// source of truth — edit CODE_OF_CONDUCT.md and this page follows.
+import { Content } from '../../CODE_OF_CONDUCT.md';
+---
+
+<Base
+  title="Code of conduct"
+  description="How we keep a room full of people who disagree with each other safe to be in. Short, specific, and we mean it."
+>
+  <section class="band band--tight">
+    <div class="shell prose">
+      <Content />
+      <p style="margin-block-start: var(--space-xl)">
+        <a href={`mailto:${site.email}`}>{site.email}</a> — read by a person.
+      </p>
+    </div>
+  </section>
+</Base>

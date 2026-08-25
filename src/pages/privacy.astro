@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import CallSheet from '../components/CallSheet.astro';
+import { analytics, luma, site } from '../config';
+---
+
+<Base
+  title="Privacy"
+  description="What this website collects about you: nothing. What Luma collects when you register, what happens to photographs taken at events, and how to ask us to remove one."
+>
+  <section class="band band--tight">
+    <div class="shell">
+      <h1>Privacy</h1>
+      <p class="lede" style="margin-block-start: var(--space-m)">
+        Short version: this website does not collect anything about you at all. There is no
+        cookie banner because there are no cookies to warn you about.
+      </p>
+      <div style="margin-block-start: var(--space-l)">
+        <CallSheet
+          label="Summary"
+          rows={[
+            { key: 'Cookies', val: 'None' },
+            { key: 'Analytics', val: analytics.enabled ? `Yes — ${analytics.provider}, no cookies, no personal data` : 'None' },
+            { key: 'Tracking', val: 'None' },
+            { key: 'Your data', val: 'We hold none of it from this site' },
+            { key: 'Contact', val: site.email },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="detail">
+    <div class="shell prose">
+      <h2 id="detail">The longer version</h2>
+
+      <h3>This website</h3>
+      <p>
+        Every page here is a plain file served to your browser. There are no cookies, no
+        analytics scripts, no tracking pixels, no embedded fonts loaded from somebody
+        else's server, no social media widgets and no advertising. Nothing you do on this
+        site is recorded by us or shared with anybody.
+      </p>
+      <p>
+        Whoever hosts the site keeps standard server logs for a short period — the sort of
+        thing every web server writes down — and we do not read them or connect them to
+        anybody.
+      </p>
+      <p>
+        There is one exception, and it is the events page: the calendar is shown inside a
+        frame that comes from Luma, and the "save me a spot" button loads a small piece of
+        code from Luma. If you use either of those, Luma will know about it in the way any
+        website you visit knows about it. Everything on this site works without them —
+        there is always a plain link next to the embed.
+      </p>
+
+      <h3>Registering for an event</h3>
+      <p>
+        Booking is handled entirely by <a href={luma.calendarUrl} rel="noopener">Luma</a>.
+        When you register, your name and email address are held by Luma, not by us. We can
+        see the guest list for our own events, and we use it for exactly two things:
+        knowing how many chairs to put out, and sending the occasional message about the
+        event you signed up for.
+      </p>
+      <p>
+        We do not sell it, share it, or add you to anything else. If you want off the list,
+        you can leave the calendar on Luma at any time, or{' '}
+        <a href={`mailto:${site.email}`}>email us</a> and we will remove you.
+      </p>
+      <p>
+        Luma's own privacy policy covers what they do with it:{' '}
+        <a href="https://luma.com/privacy" rel="noopener">luma.com/privacy</a>.
+      </p>
+
+      <h3>Photographs</h3>
+      <p>
+        We take photographs at events and put some of them on{' '}
+        <a href="/past">the archive page</a>. It is the honest record of what these
+        evenings are, and it is the main reason people who have never been decide to come.
+        There are none up yet, because there has not been an event yet.
+      </p>
+      <p>
+        You can opt out at the door and nobody will photograph you. If a photograph of you
+        is already up and you would rather it was not, email{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a> with a rough description of which
+        one — you do not have to explain why, and we will take it down, usually the same
+        day and always within a week.
+      </p>
+
+      <h3>Email</h3>
+      <p>
+        If you email us, we keep the email so we can reply and so we remember the
+        conversation. Ask us to delete it and we will.
+      </p>
+
+      <h3>Your rights</h3>
+      <p>
+        Under UK data protection law you can ask what we hold about you, ask for it to be
+        corrected, or ask for it to be deleted. Write to{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a> and we will sort it out — there is
+        no form and no process. If you are not happy with how we handle it, you can
+        complain to the{' '}
+        <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">Information
+        Commissioner's Office</a>.
+      </p>
+
+      <h3>If this changes</h3>
+      <p>
+        If we ever turn on privacy-respecting, cookie-free visitor counting, this page gets
+        updated before it goes live rather than after. It is currently{' '}
+        <strong>{analytics.enabled ? 'on' : 'off'}</strong>.
+      </p>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,194 @@
+---
+import Base from '../layouts/Base.astro';
+import TitleCard from '../components/TitleCard.astro';
+import CallSheet from '../components/CallSheet.astro';
+import LumaRegisterButton from '../components/LumaRegisterButton.astro';
+import { featuredEvent, luma, venueAccess } from '../config';
+import { longDate, slate, time } from '../lib/date';
+
+const start = new Date(featuredEvent.start);
+
+const runningOrder = [
+  {
+    time: '18:30',
+    what: 'Doors and the bar',
+    note: 'Come early rather than on the hour. Somebody will say hello to you — that is a rule, not a hope.',
+  },
+  {
+    time: '19:00',
+    what: 'Someone shows something',
+    note: 'About half an hour, from a person who has actually made the thing. Slides optional. Finished work optional.',
+  },
+  {
+    time: '19:30',
+    what: 'Questions, then the argument',
+    note: 'The questions are the point. We are not trying to build a room that agrees with itself.',
+  },
+  {
+    time: '20:00',
+    what: 'The bit at the bar',
+    note: 'The last half hour is just people talking to each other. If you only stay for one part of the evening, make it this one.',
+  },
+  {
+    time: featuredEvent.ends,
+    what: 'Out',
+    note: 'There is plenty on the Old High Street if people want to carry on somewhere else.',
+  },
+];
+---
+
+<Base
+  title="FAM — Folkestone AI Meetup"
+  description="A monthly evening in Folkestone for artists, filmmakers, producers and designers who are curious, sceptical, or somewhere in between about AI. The first one is on 10 September. Free, no code, everyone welcome."
+  image="/og/fam-og.png"
+  luma
+>
+  <TitleCard line="It's the first one. Everybody walking in will be new.">
+    <p class="title-card__meta">
+      FAM {String(featuredEvent.number).padStart(2, '0')} · <strong>{slate(start)}</strong>
+      {` · ${time(start)} · ${featuredEvent.venue}, Folkestone`}
+    </p>
+    <div class="title-card__actions">
+      <LumaRegisterButton label="Save me a spot" />
+    </div>
+  </TitleCard>
+
+  <!-- Is this for me? Answered before anything else, because it is the only question
+       most people arrive with. -->
+  <section class="band" aria-labelledby="for-me">
+    <div class="shell">
+      <h2 id="for-me">Is this for me?</h2>
+      <div class="prose" style="margin-block-start: var(--space-m)">
+        <p class="lede">
+          Almost certainly, yes — and you do not need to be technical. Not a bit, not
+          secretly, not "well, I did a course once".
+        </p>
+        <p>
+          FAM is for people who make things: illustrators, filmmakers, producers, sound
+          people, designers, writers, anybody working in or around the industries that have
+          suddenly got a lot to argue about. You do not need to understand how any of this
+          works to have a useful opinion about what it is doing to your work — and the
+          people who do understand how it works are, on the whole, keen to explain it to you
+          at the bar.
+        </p>
+        <p>
+          Some people coming are excited about all of it. Some are angry about all of it.
+          Quite a few will be both, on the same evening, about the same thing. All of that
+          is welcome, so long as you extend the same patience to the person standing next to
+          you that you would want extended to you.
+        </p>
+        <p>
+          Nobody is selling anything from the front. There is no recruiter working the room
+          and no pitch at the end. It is a room, some chairs, a projector and a bar.
+        </p>
+        <p>
+          And since this is the very first one: there is no in-crowd to be outside of.
+          Everybody there will be working out what it is at the same time you are.
+        </p>
+        <p>
+          If it helps to know where the line is before you come:{' '}
+          <a href="/code-of-conduct">read the code of conduct</a>. It is short and we mean it.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- The running order. A genuine sequence, so it gets timecodes rather than 01/02/03. -->
+  <section class="band band--dim" aria-labelledby="what-happens">
+    <div class="shell">
+      <h2 id="what-happens">What actually happens</h2>
+      <p class="lede" style="margin-block-start: var(--space-s)">
+        Two hours, once a month. This is how the first one is meant to run.
+      </p>
+      <ol class="runner" style="margin-block-start: var(--space-l)">
+        {
+          runningOrder.map((row) => (
+            <li>
+              <time datetime={row.time}>{row.time}</time>
+              <div>
+                <b>{row.what}</b>
+                <p>{row.note}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Next event -->
+  <section class="band band--rebate" aria-labelledby="next">
+    <div class="shell">
+      <h2 id="next">The first one</h2>
+      <p class="lede" style="margin-block-start: var(--space-s); max-width: 46ch">
+        {featuredEvent.title}
+      </p>
+      <div style="margin-block-start: var(--space-l)">
+        <CallSheet
+          label="Details of the first event"
+          rows={[
+            { key: 'Date', val: longDate(start) },
+            { key: 'Doors', val: `${featuredEvent.doors} · out by ${featuredEvent.ends}` },
+            { key: 'Where', val: `${featuredEvent.venue}, ${featuredEvent.venueAddress}` },
+            { key: 'Cost', val: featuredEvent.cost, mark: true },
+            { key: 'Access', val: 'Step-free, all on the ground floor. Bar takes card. No hearing loop.' },
+          ]}
+        />
+      </div>
+      <div style="margin-block-start: var(--space-l)">
+        <LumaRegisterButton label="Save me a spot" />
+      </div>
+      <p style="margin-block-start: var(--space-m)" class="fallback-link">
+        Cannot make this one?{' '}
+        <a href={luma.calendarUrl} rel="noopener">Follow the calendar on Luma</a> and it will
+        tell you about the next. That is our mailing list — we have not built another.
+      </p>
+    </div>
+  </section>
+
+  <!-- Practical access. Nobody should have to email to find out whether they can get in. -->
+  <section class="band" aria-labelledby="getting-there">
+    <div class="shell">
+      <h2 id="getting-there">Getting there, getting in</h2>
+      <div class="cols" style="margin-block-start: var(--space-l)">
+        <div>
+          <h3>The building</h3>
+          <p>{venueAccess.stepFree} {venueAccess.accessibleToilet}</p>
+        </div>
+        <div>
+          <h3>Hearing</h3>
+          <p>{venueAccess.noHearingLoop}</p>
+        </div>
+        <div>
+          <h3>Trains and parking</h3>
+          <p>{venueAccess.station} {venueAccess.parking}</p>
+        </div>
+        <div>
+          <h3>Food and drink</h3>
+          <p>
+            {venueAccess.bar} {venueAccess.food} Nobody minds if you turn up straight from
+            work and eat while somebody is talking.
+          </p>
+        </div>
+        <div>
+          <h3>Photographs</h3>
+          <p>
+            We take a few, and they end up in{' '}
+            <a class="link" href="/past">the archive</a>. If you would rather not be in
+            them, say so at the door and you will not be. You can also{' '}
+            <a class="link" href="/privacy">ask us to take one down</a> later, no reason
+            needed.
+          </p>
+        </div>
+        <div>
+          <h3>Anything else</h3>
+          <p>
+            If there is something you need to know before you will commit to coming, ask.{' '}
+            <a class="link" href={`mailto:fam@andcake.dev`}>fam@andcake.dev</a> is read by a
+            person, and we would far rather answer a question than have you not turn up.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

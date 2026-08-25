@@ -1,0 +1,106 @@
+---
+import Base from '../../layouts/Base.astro';
+import ContactSheet from '../../components/ContactSheet.astro';
+import EmptySheet from '../../components/EmptySheet.astro';
+import CallSheet from '../../components/CallSheet.astro';
+import LumaRegisterButton from '../../components/LumaRegisterButton.astro';
+import { featuredEvent } from '../../config';
+import { longDate, slate } from '../../lib/date';
+import { getPastEvents } from '../../lib/past-events';
+
+const events = await getPastEvents();
+
+const totalFrames = events.reduce((n, e) => n + e.data.images.length, 0);
+const counted = events.filter((e) => e.data.attendees);
+const people = counted.reduce((n, e) => n + (e.data.attendees ?? 0), 0);
+const first = events.at(-1);
+
+const start = new Date(featuredEvent.start);
+const empty = events.length === 0;
+
+const rows = empty
+  ? [
+      { key: 'Nights so far', val: 'None. This is the first one.' },
+      { key: 'The first', val: `${longDate(start)}, ${featuredEvent.doors}` },
+      { key: 'Where', val: `${featuredEvent.venue}, ${featuredEvent.venueAddress}` },
+      { key: 'Cost', val: featuredEvent.cost, mark: true },
+    ]
+  : [
+      { key: 'Nights', val: `${events.length}` },
+      { key: 'Frames', val: `${totalFrames}` },
+      ...(people
+        ? [{ key: 'People', val: `${people} across ${counted.length} counted nights` }]
+        : []),
+      ...(first ? [{ key: 'Since', val: slate(first.data.date) }] : []),
+    ];
+---
+
+<Base
+  title={empty ? 'The archive' : 'Past events'}
+  description={
+    empty
+      ? 'There is no archive yet — FAM has not happened once. The first one is on 10 September at kollectiv in Folkestone, and everybody there will be new to it.'
+      : 'The FAM archive — photographs, speakers and links from every Folkestone AI Meetup so far, laid out as a contact sheet.'
+  }
+  image="/og/past.png"
+  luma
+>
+  <section class="band band--tight">
+    <div class="shell">
+      <h1>{empty ? 'This is where the photographs go' : 'Every room we have filled so far'}</h1>
+      <p class="lede" style="margin-block-start: var(--space-m)">
+        {
+          empty
+            ? 'There is nothing on this page, and that is not an oversight — FAM has not happened yet. Once it has, this is where the proof sheets live: who came, who spoke, what got made.'
+            : 'Proof prints from the nights that have already happened. If you are trying to work out what one of these evenings is actually like, this page will tell you more than anything we could write.'
+        }
+      </p>
+      <div style="margin-block-start: var(--space-l)">
+        <CallSheet label="The archive so far" rows={rows} />
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--tight">
+    <div class="shell">
+      <h2 class="label" style="margin-block-end: var(--space-m)">
+        {empty ? 'The sheet, so far' : 'The sheets'}
+      </h2>
+      {
+        empty ? (
+          <EmptySheet frames={8} roll={featuredEvent.number}>
+            Blank frames, printed edge codes, nothing shot on them. Come to the first one
+            and you will be somewhere on this sheet by the end of September.
+          </EmptySheet>
+        ) : (
+          events.map((entry, i) => (
+            <ContactSheet
+              entry={entry}
+              href={entry.body?.trim() ? `/past/${entry.id}` : undefined}
+              eager={i === 0}
+            />
+          ))
+        )
+      }
+    </div>
+  </section>
+
+  <section class="band band--dim" aria-labelledby="next-one">
+    <div class="shell">
+      <h2 id="next-one">{empty ? 'Be in the first one' : 'Be in the next one'}</h2>
+      <p class="lede" style="margin-block-start: var(--space-s); margin-block-end: var(--space-l)">
+        {
+          empty
+            ? 'Nobody has been to one of these. There is no in-crowd to be outside of yet, which will never be quite this true again.'
+            : 'Everything above was a room full of people who had not been to one before either.'
+        }
+      </p>
+      <LumaRegisterButton label={empty ? 'Save me a spot' : 'Save me a spot'} />
+
+      <p class="fallback-link" style="margin-block-start: var(--space-m)">
+        We photograph these evenings for this page. If you would rather not be in a
+        photograph, tell us at the door — see <a href="/privacy">privacy</a>.
+      </p>
+    </div>
+  </section>
+</Base>

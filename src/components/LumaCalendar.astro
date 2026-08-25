@@ -1,0 +1,37 @@
+---
+/*
+ ╔══════════════════════════════════════════════════════════════════════════════╗
+ ║  PASTE THE CURRENT SNIPPET FROM LUMA. DO NOT EDIT BY HAND.                   ║
+ ║                                                                              ║
+ ║  luma.com/home/calendars → your calendar → Settings → Embed                   ║
+ ║                                                                              ║
+ ║  Luma has moved domains before (lu.ma → luma.com) and the embed shape moves   ║
+ ║  with it. If this page looks wrong, the fix is to re-copy the snippet — not   ║
+ ║  to guess at the URL. The embed URL itself lives in src/config.ts.            ║
+ ╚══════════════════════════════════════════════════════════════════════════════╝
+*/
+import { luma } from '../config';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Upcoming FAM events, on Luma' } = Astro.props;
+---
+
+<div class="stack">
+  <iframe
+    class="luma-embed"
+    src={luma.calendarEmbedUrl}
+    title={title}
+    loading="lazy"
+    allow="fullscreen; payment"
+    aria-label={title}></iframe>
+
+  <!-- Always rendered. If the iframe is blocked, JavaScript fails, or someone is on
+       a locked-down network, this is still a working way in. -->
+  <p class="fallback-link">
+    Embed not loading? <a href={luma.calendarUrl} rel="noopener">Open the FAM calendar on
+    Luma</a> instead — everything is on there.
+  </p>
+</div>

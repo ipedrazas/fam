@@ -1,0 +1,77 @@
+/*
+  FAM design tokens. See DESIGN.md.
+
+  The palette is a contact sheet lying on a light box: the diffused white of the table,
+  the black of the film rebate, and the two colours of wax pencil a picture editor marks
+  their selects with.
+
+  Contrast is measured, not eyeballed. Ratios are in DESIGN.md §2.
+  Two rules that keep it honest:
+    1. --select is NEVER a text colour. It is a ground, a stroke, or a pencil mark.
+    2. On --rebate grounds, links use --mark-on-dark. Plain --mark fails AA there (2.46:1).
+*/
+
+:root {
+  /* ── Colour ─────────────────────────────────────────────────────────────── */
+  --sheet: #efefe9;      /* light-box white, faintly green from the tube */
+  --sheet-dim: #e4e4dc;  /* one step down — bands, pull quotes, table rows */
+  --rebate: #101109;     /* film-base black — gutters, footer, title card */
+  --ink: #23241e;        /* body text */
+  --edge: #63645a;       /* edge-marking grey — mono metadata, captions */
+  --select: #eba91f;     /* yellow chinagraph */
+  --mark: #3d3ad1;       /* blue chinagraph — links, focus rings */
+
+  /* Same two colours, lifted for dark grounds. Not new colours. */
+  --edge-on-dark: #a8a89c;
+  --mark-on-dark: #9b99f0;
+
+  /* Hairlines. Rules only appear where they are doing a job. */
+  --rule: color-mix(in srgb, var(--ink) 22%, transparent);
+  --rule-on-dark: color-mix(in srgb, var(--sheet) 22%, transparent);
+
+  /* ── Type ───────────────────────────────────────────────────────────────── */
+  --font-display: 'Redaction 20', 'Bagnard', Georgia, 'Times New Roman', serif;
+  --font-body: 'Public Sans Variable', 'Public Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Courier Prime', ui-monospace, 'Courier New', monospace;
+
+  --step--1: clamp(0.89rem, 0.86rem + 0.14vw, 0.96rem);
+  --step-0: clamp(1.06rem, 1.02rem + 0.2vw, 1.19rem);
+  --step-1: clamp(1.27rem, 1.18rem + 0.42vw, 1.58rem);
+  --step-2: clamp(1.52rem, 1.36rem + 0.8vw, 2.11rem);
+  --step-3: clamp(1.83rem, 1.55rem + 1.38vw, 2.81rem);
+  --step-4: clamp(2.19rem, 1.72rem + 2.36vw, 3.75rem);
+  --step-5: clamp(2.63rem, 1.83rem + 4vw, 5rem);
+
+  --leading-display: 1.05;
+  --leading-body: 1.6;
+  --leading-mono: 1.4;
+
+  --measure: 62ch;
+  --measure-tight: 46ch;
+
+  /* ── Space (4px base) ───────────────────────────────────────────────────── */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-4xl: 8rem;
+
+  /* ── Structure ──────────────────────────────────────────────────────────── */
+  --shell: 1180px;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+
+  /* Photographic paper trimmed on a rotary cutter, not a Bootstrap card. */
+  --radius-frame: 4px;
+  --radius-input: 2px;
+
+  /* The black between frames on a proof print. Not whitespace. */
+  --sprocket: 6px;
+
+  --focus-ring: 3px;
+  --focus-offset: 3px;
+}

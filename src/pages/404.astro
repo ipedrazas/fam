@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import TitleCard from '../components/TitleCard.astro';
+---
+
+<Base
+  title="Not found"
+  description="That page isn't here."
+  noindex
+>
+  <TitleCard line="Nothing in this frame.">
+    <p class="title-card__meta">404 · Page not found</p>
+    <div class="title-card__actions btn-row">
+      <a class="btn btn--primary" href="/">Back to the start</a>
+      <a class="btn btn--ghost" href="/past">See what has happened so far</a>
+    </div>
+  </TitleCard>
+</Base>

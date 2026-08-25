@@ -1,0 +1,202 @@
+---
+import Base from '../layouts/Base.astro';
+import CallSheet from '../components/CallSheet.astro';
+import LumaRegisterButton from '../components/LumaRegisterButton.astro';
+import { featuredEvent, site, venueAccess } from '../config';
+import { longDate } from '../lib/date';
+
+const start = new Date(featuredEvent.start);
+
+const faqs = [
+  {
+    q: 'Do I need to bring anything?',
+    a: [
+      'No. Yourself, and money for the bar if you want a drink. No laptop, no notebook, nothing to read beforehand.',
+      'If you have made something you want to show, bring it — but that is an offer, not an expectation, and most people never do.',
+    ],
+  },
+  {
+    q: 'Will I be photographed?',
+    a: [
+      'Probably a few times, across a whole evening. The photographs go on the archive page and occasionally on Luma.',
+      'Tell whoever is on the door that you would rather not be, and you will not be. You can also email us afterwards and we will take a photo down — no reason needed, no questions asked, usually the same day.',
+    ],
+  },
+  {
+    q: 'Is it going to be a sales pitch?',
+    a: [
+      'No. Nobody pays to speak here and nobody sells from the front. If a talk turns into a demo of something you can buy, that is a mistake we made in the booking and we would want to know about it.',
+      'We have no sponsor at the moment. If that changes it will be somebody helping with the cost of the room and the drinks — it will not buy anybody the microphone, and we will say plainly who they are.',
+    ],
+  },
+  {
+    q: 'Do I need to know anything about computers?',
+    a: [
+      'No, and the evening is built on the assumption that most of the room does not. Anyone speaking is asked to explain things the way you would to a friend in a pub rather than to a colleague at work.',
+      'If somebody uses a word you do not know, ask. You will not be the only one who did not know it, and asking out loud is genuinely doing the room a favour.',
+    ],
+  },
+  {
+    q: 'I do not know anybody. Is that going to be awkward?',
+    a: [
+      'This is the first one, so nobody knows anybody. There is no group that has already formed and no in-jokes to be outside of, and that will never be quite as true again as it is in September.',
+      'Come at half six rather than five to seven anyway — walking into a half-full room is easier than walking into a full one, and somebody will talk to you before the talk starts.',
+    ],
+  },
+  {
+    q: 'Can I show something I have made?',
+    a: [
+      'Yes, and please do. Email us and we will find you a slot — five minutes is usually plenty, and you do not have to be finished, or good, or sure about it. Half-done and interesting beats polished and safe.',
+    ],
+  },
+  {
+    q: 'Can I come if I do not drink?',
+    a: [
+      'Yes. There is a bar and there are also soft drinks and tap water, and nobody keeps count. Plenty of people come straight from work and leave straight after.',
+    ],
+  },
+  {
+    q: 'What does it cost?',
+    a: [
+      'Nothing. Register on Luma so we know how many chairs to put out, and turn up.',
+    ],
+  },
+];
+---
+
+<Base
+  title="About"
+  description="What FAM is, who runs it, what an evening looks like, and honest answers to the questions people actually ask before they come."
+  image="/og/about.png"
+  luma
+>
+  <section class="band band--tight">
+    <div class="shell">
+      <h1>What this is, and whether you are welcome</h1>
+      <div style="margin-block-start: var(--space-l)">
+        <CallSheet
+          label="The basics"
+          rows={[
+            { key: 'What', val: 'A monthly evening about AI, for people who make things' },
+            { key: 'First one', val: `${longDate(start)}, doors ${featuredEvent.doors}`, mark: true },
+            { key: 'Then', val: 'Once a month' },
+            { key: 'Where', val: `${featuredEvent.venue}, ${featuredEvent.venueAddress}` },
+            { key: 'Cost', val: 'Free' },
+            { key: 'Run by', val: 'Ivan Pedrazas' },
+            { key: 'Email', val: site.email },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--dim" aria-labelledby="premise">
+    <div class="shell prose">
+      <h2 id="premise">The premise</h2>
+      <p class="lede">
+        Something has arrived in the middle of how creative work gets made, and most of the
+        conversation about it is happening either in places that are far too excited or in
+        places that have already decided. Folkestone has an unusual number of people who
+        make things for a living. This is a room where those people can talk about it in
+        front of each other.
+      </p>
+      <p>
+        That is the whole idea. It is not a training course and it is not a support group.
+        Nobody is going to teach you to use a tool, and nobody is going to tell you it will
+        be fine. Once a month, somebody who has actually done something shows the room what
+        they did, and then the room gets to push back.
+      </p>
+      <p>
+        It is free, it finishes at nine so people with an early start or somebody to get
+        home to can still come, and — for now — none of it has happened yet. The first one
+        is on {longDate(start)}. What it turns into after that depends quite a lot on who
+        walks in.
+      </p>
+
+      <h2>Who runs it</h2>
+      <p>
+        FAM is run by <strong>Ivan Pedrazas</strong>, who lives in Folkestone, works in
+        software, and started this because the interesting arguments about this stuff were
+        happening in rooms full of engineers, which is the wrong room.
+      </p>
+      <p>
+        If you want to speak, want to bring something, want a photograph taken down, or
+        want to tell us we have got something wrong:{' '}
+        <a href={`mailto:${site.email}`}>{site.email}</a>. It is read by a person.
+      </p>
+
+      <h2>How the evening runs</h2>
+      <p>
+        Doors and the bar at {featuredEvent.doors}. Somebody shows something at 19:00 for
+        about half an hour. Questions from 19:30, which is where it should get interesting.
+        From eight to closing time is networking time: people talking to each other, which is where
+        the actual point of the evening tends to happen. Really! Out by {featuredEvent.ends} or a bit later.
+      </p>
+      <p>
+        <strong>Getting in:</strong> {venueAccess.stepFree} {venueAccess.accessibleToilet}{' '}
+        {venueAccess.noHearingLoop}
+      </p>
+      <p>
+        <strong>Getting there:</strong> {venueAccess.station} {venueAccess.parking}{' '}
+        {venueAccess.bar} {venueAccess.food}
+      </p>
+      <p>
+        If there is something else you need to know before you commit to coming, ask us — we
+        would much rather answer than have you not come.
+      </p>
+      <p>See also: <a href="/code-of-conduct">the code of conduct</a>.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="faq">
+    <div class="shell">
+      <h2 id="faq">Questions people actually ask</h2>
+
+      <!-- This one is not in the list below and it is not in an accordion. It is the most
+           important answer on the site. -->
+      <dl class="faq faq__lead" style="margin-block-start: var(--space-l)">
+        <dt>I think AI is bad for artists. Am I welcome?</dt>
+        <dd>Yes. Genuinely — and not in a we-tolerate-dissent sort of way.</dd>
+        <dd>
+          A good number of the people in this room think some version of what you think:
+          that the training data was taken, that the work is being devalued, that the
+          people cheering loudest are not the people who will carry the cost. Those
+          arguments get made here out loud, by people whose livelihoods are actually on the
+          line, and nobody gets talked down to for making them.
+        </dd>
+        <dd>
+          What we ask of you is what we ask of everyone: argue with the strongest version
+          of the other person's position rather than the easiest one, and argue with a
+          person rather than at a room. Past that — come and be furious about it. It is a
+          better evening when somebody is.
+        </dd>
+      </dl>
+
+      <dl class="faq">
+        {
+          faqs.map((f) => (
+            <>
+              <dt>{f.q}</dt>
+              {f.a.map((para) => (
+                <dd>{para}</dd>
+              ))}
+            </>
+          ))
+        }
+      </dl>
+    </div>
+  </section>
+
+  <section class="band band--dim" aria-labelledby="come">
+    <div class="shell">
+      <h2 id="come">Come to the first one</h2>
+      <p class="lede" style="margin-block-start: var(--space-s); margin-block-end: var(--space-l)">
+        {longDate(start)} at {featuredEvent.venue}. It is free, it will take you twenty
+        seconds to put your name down, and{' '}
+        <a class="link" href="/past">the archive</a> is currently a blank sheet waiting for
+        the first roll.
+      </p>
+      <LumaRegisterButton label="Save me a spot" />
+    </div>
+  </section>
+</Base>

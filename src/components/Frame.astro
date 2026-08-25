@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import ChinagraphOval from './ChinagraphOval.astro';
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  /** Zero-indexed position on the sheet. Drives the edge code. */
+  index: number;
+  /** Seeds the roll numbering so each event's sheet reads as a different roll. */
+  roll: number;
+  selected?: boolean;
+  eager?: boolean;
+}
+
+const { src, alt, index, roll, selected = false, eager = false } = Astro.props;
+
+// 35mm contact-sheet numbering: 21, 21A, 22, 22A… Generated, never authored.
+const base = 10 + roll * 3;
+const code = `${base + Math.floor(index / 2)}${index % 2 ? 'A' : ''}`;
+---
+
+<li class="frame">
+  <a class="frame__link" href={src.src} aria-label={`View full-size photograph: ${alt}`}>
+    <Image
+      class="frame__img"
+      src={src}
+      alt={alt}
+      widths={[280, 560, 840]}
+      sizes="(max-width: 40rem) 45vw, (max-width: 64rem) 30vw, 280px"
+      loading={eager ? 'eager' : 'lazy'}
+      decoding={eager ? 'sync' : 'async'}
+    />
+  </a>
+  {selected && <ChinagraphOval />}
+  <p class="frame__code"><b>{code}</b></p>
+</li>
