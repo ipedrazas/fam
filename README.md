@@ -1,4 +1,4 @@
-# FAM — Folkestone AI Meetup
+# FAM, Folkestone AI Meetup
 
 The website for a monthly meetup in Folkestone. Six pages, no database, no backend, no
 accounts, no cookies. Everything about the site is a file in this repository.
@@ -39,7 +39,7 @@ event that appears on the homepage.
 
 ### 2. Adding a past event
 
-**Drop a markdown file and a folder of photos.** There are none yet — until the first
+**Drop a markdown file and a folder of photos.** There are none yet, until the first
 event happens, `/past` renders a blank contact sheet, which is deliberate. The moment you
 add a file here, the page switches to the real archive on its own.
 
@@ -55,7 +55,7 @@ date: 2026-09-10
 venue: kollectiv
 blurb: One or two sentences about what actually happened.
 attendees: 44          # optional
-select: 2              # optional — which photo gets the yellow circle (counts from 0)
+select: 2              # optional, which photo gets the yellow circle (counts from 0)
 speakers:
   - name: A Person
     role: What they do          # optional
@@ -65,14 +65,14 @@ images:
     alt: A description of what is in this photograph.
   - src: ./media/<slug>/02.jpg
     alt: Another description.
-links:                 # optional — slides, recordings, things people made
+links:                 # optional, slides, recordings, things people made
   - label: Slides
     url: https://example.com/slides
 ---
 
 Anything you write down here becomes a full write-up page at `/past/<slug>`, linked from
 the contact sheet. Leave it empty and the event just lives on the archive page, which is
-fine — most of them will.
+fine, most of them will.
 ```
 
 3. `npm run build`. Commit, push.
@@ -82,7 +82,7 @@ fails with a message telling you which one. That is deliberate: a contact sheet 
 text is a page full of nothing for anyone on a screen reader or a bad connection.
 
 The filename is the URL. `2026-10-08-the-title.md` becomes `/past/2026-10-08-the-title`.
-Once you have pushed it, do not rename it — people will have shared the link.
+Once you have pushed it, do not rename it, people will have shared the link.
 
 ---
 
@@ -107,7 +107,7 @@ Node 22 or newer.
 
 The site is a folder of static files, so it will go anywhere.
 
-**Cloudflare Pages / Netlify** — connect the repo, build command `npm run build`, output
+**Cloudflare Pages / Netlify**, connect the repo, build command `npm run build`, output
 directory `dist`. Nothing else to configure.
 
 **Your own VM**, which is what the Docker setup here is for:
@@ -141,14 +141,14 @@ src/
 public/
   og/                     social share cards (committed, regenerate with npm run og)
   hero/HERO-PHOTO.md      how to add a real photograph to the homepage
-CODE_OF_CONDUCT.md        the source for /code-of-conduct — edit here, the page follows
+CODE_OF_CONDUCT.md        the source for /code-of-conduct, edit here, the page follows
 ```
 
 ## Some deliberate choices
 
 - **No cookies, no analytics, no tracking, no cookie banner.** If you ever want visitor
   numbers, `analytics` in `src/config.ts` will wire up Plausible or Umami behind one flag.
-  It is off, and turning it on means updating `/privacy` first — the page says so.
+  It is off, and turning it on means updating `/privacy` first, the page says so.
 - **No CMS.** Adding a past event is writing a file and pushing it. That is the feature.
 - **No dark-mode toggle.** One mode, executed properly.
 - **One piece of third-party JavaScript**, the Luma checkout button, loaded once with
@@ -159,11 +159,11 @@ CODE_OF_CONDUCT.md        the source for /code-of-conduct — edit here, the pag
 
 Three, all OFL, all self-hosted from npm:
 
-- **Redaction 20** — display. A serif built around the degradation of a reproduced image.
-- **Public Sans** — body. Commissioned to make official information readable by everyone.
-- **Courier Prime** — dates, venues, captions. The font screenplays are written in.
+- **Redaction 20**, display. A serif built around the degradation of a reproduced image.
+- **Public Sans**, body. Commissioned to make official information readable by everyone.
+- **Courier Prime**, dates, venues, captions. The font screenplays are written in.
 
 ## Licence
 
-Code: MIT, see `LICENSE`. The photographs and written content are not — they belong to FAM
+Code: MIT, see `LICENSE`. The photographs and written content are not, they belong to FAM
 and the people in them.

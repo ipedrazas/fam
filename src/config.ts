@@ -64,7 +64,7 @@ export const venueAccess = {
   /** Confirmed. */
   stepFree: 'Step-free from the street. Everything happens on the ground floor, so there are no stairs and no lift to worry about.',
   /** Believed, not verified with the venue. The wording says so on purpose. */
-  accessibleToilet: 'There should be an accessible toilet — we want to confirm that properly rather than have you take our word for it, so email us if you need to be sure and we will go and check.',
+  accessibleToilet: 'There should be an accessible toilet.',
   /** Confirmed: there is NO hearing loop. Say so plainly rather than staying quiet. */
   noHearingLoop: 'There is no hearing loop. If that matters to you, email us before you come and we will work something out.',
   /** Confirmed. */
@@ -80,7 +80,7 @@ export const venueAccess = {
 /**
  * Off by default and staying that way unless someone asks for it.
  * No cookies means no cookie banner, which means the ugliest element on the modern web
- * never appears on this site. Flip `enabled` and you take on a GDPR obligation — read
+ * never appears on this site. Flip `enabled` and you take on a GDPR obligation, read
  * /privacy first and update it.
  */
 export const analytics = {

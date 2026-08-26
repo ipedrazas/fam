@@ -40,7 +40,7 @@ const pastEvents = defineCollection({
               .min(1, 'Alt text cannot be empty. Describe what is in the photo.'),
           }),
         )
-        .min(1, 'A past event needs at least one photo — it is the whole point of the page.'),
+        .min(1, 'A past event needs at least one photo, it is the whole point of the page.'),
       /** Slides, recordings, things people made afterwards. */
       links: z
         .array(z.object({ label: z.string().min(1), url: z.url() }))

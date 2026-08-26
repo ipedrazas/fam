@@ -11,7 +11,7 @@ const start = new Date(featuredEvent.start);
 
 <Base
   title="Events"
-  description="Every upcoming FAM night in Folkestone — dates, venue and how to save yourself a spot. Free, monthly, and no technical background required."
+  description="Every upcoming FAM night in Folkestone, dates, venue and how to save yourself a spot. Free, monthly, and no technical background required."
   image="/og/events.png"
   luma
 >
@@ -22,7 +22,7 @@ const start = new Date(featuredEvent.start);
         <CallSheet
           label="Details of the next event"
           rows={[
-            { key: 'First', val: `FAM ${String(featuredEvent.number).padStart(2, '0')} — ${featuredEvent.title}` },
+            { key: 'First', val: `FAM ${String(featuredEvent.number).padStart(2, '0')} - ${featuredEvent.title}` },
             { key: 'When', val: `${longDate(start)}, doors ${featuredEvent.doors}` },
             { key: 'Where', val: `${featuredEvent.venue}, ${featuredEvent.venueAddress}` },
             { key: 'Cost', val: featuredEvent.cost, mark: true },
@@ -41,7 +41,7 @@ const start = new Date(featuredEvent.start);
     <div class="shell">
       <h2 id="calendar">The calendar</h2>
       <p class="lede" style="margin-block-start: var(--space-s); margin-block-end: var(--space-l)">
-        Everything lives on Luma — dates, tickets, reminders, the lot. Follow the calendar
+        Everything lives on Luma, dates, tickets, reminders, the lot. Follow the calendar
         and you will hear about each one without us having to run a mailing list.
       </p>
       <LumaCalendar title="FAM upcoming events calendar" />

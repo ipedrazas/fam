@@ -20,7 +20,7 @@ import { analytics, luma, site } from '../config';
           label="Summary"
           rows={[
             { key: 'Cookies', val: 'None' },
-            { key: 'Analytics', val: analytics.enabled ? `Yes — ${analytics.provider}, no cookies, no personal data` : 'None' },
+            { key: 'Analytics', val: analytics.enabled ? `Yes, ${analytics.provider}, no cookies, no personal data` : 'None' },
             { key: 'Tracking', val: 'None' },
             { key: 'Your data', val: 'We hold none of it from this site' },
             { key: 'Contact', val: site.email },
@@ -42,15 +42,15 @@ import { analytics, luma, site } from '../config';
         site is recorded by us or shared with anybody.
       </p>
       <p>
-        Whoever hosts the site keeps standard server logs for a short period — the sort of
-        thing every web server writes down — and we do not read them or connect them to
+        Whoever hosts the site keeps standard server logs for a short period, the sort of
+        thing every web server writes down, and we do not read them or connect them to
         anybody.
       </p>
       <p>
         There is one exception, and it is the events page: the calendar is shown inside a
         frame that comes from Luma, and the "save me a spot" button loads a small piece of
         code from Luma. If you use either of those, Luma will know about it in the way any
-        website you visit knows about it. Everything on this site works without them —
+        website you visit knows about it. Everything on this site works without them,
         there is always a plain link next to the embed.
       </p>
 
@@ -83,7 +83,7 @@ import { analytics, luma, site } from '../config';
         You can opt out at the door and nobody will photograph you. If a photograph of you
         is already up and you would rather it was not, email{' '}
         <a href={`mailto:${site.email}`}>{site.email}</a> with a rough description of which
-        one — you do not have to explain why, and we will take it down, usually the same
+        one, you do not have to explain why, and we will take it down, usually the same
         day and always within a week.
       </p>
 
@@ -97,7 +97,7 @@ import { analytics, luma, site } from '../config';
       <p>
         Under UK data protection law you can ask what we hold about you, ask for it to be
         corrected, or ask for it to be deleted. Write to{' '}
-        <a href={`mailto:${site.email}`}>{site.email}</a> and we will sort it out — there is
+        <a href={`mailto:${site.email}`}>{site.email}</a> and we will sort it out, there is
         no form and no process. If you are not happy with how we handle it, you can
         complain to the{' '}
         <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">Information
