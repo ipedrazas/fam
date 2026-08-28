@@ -45,7 +45,7 @@ export const featuredEvent = {
   number: 1,
   title: 'Using AI effectively',
   /** ISO 8601, local time. */
-  start: '2026-09-10T18:30:00+01:00',
+  start: '2026-09-10T19:30:00+01:00',
   doors: '19:30',
   ends: '21:00',
   venue: 'kollectiv',
