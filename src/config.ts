@@ -46,8 +46,8 @@ export const featuredEvent = {
   title: 'Using AI effectively',
   /** ISO 8601, local time. */
   start: '2026-09-10T18:30:00+01:00',
-  doors: '18:30',
-  ends: '20:30',
+  doors: '19:30',
+  ends: '21:00',
   venue: 'kollectiv',
   venueAddress: '69 The Old High St, Folkestone CT20 1RN',
   cost: 'Free',
