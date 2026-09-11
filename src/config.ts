@@ -42,17 +42,17 @@ export const luma = {
  */
 export const featuredEvent = {
   /** Which FAM this is. This is the first one. */
-  number: 1,
-  title: 'Using AI effectively',
+  number: 2,
+  title: 'Practical AI',
   /** ISO 8601, local time. */
-  start: '2026-09-10T19:30:00+01:00',
-  doors: '19:30',
+  start: '2026-10-08T18:30:00+01:00',
+  doors: '18:30',
   ends: '21:00',
   venue: 'kollectiv',
   venueAddress: '69 The Old High St, Folkestone CT20 1RN',
   cost: 'Free',
-  lumaEventUrl: 'https://luma.com/aqvh7xdc',
-  lumaEventId: 'evt-AemRhhLtn7bFybG',
+  lumaEventUrl: 'https://luma.com/f6298pbr',
+  lumaEventId: 'evt-vdvAcm4yeTstmKs',
 } as const;
 
 /**
