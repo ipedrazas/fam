@@ -45,7 +45,7 @@ export const featuredEvent = {
   number: 2,
   title: 'Practical AI',
   /** ISO 8601, local time. */
-  start: '2026-10-08T18:30:00+01:00',
+  start: '2026-10-15T18:30:00+01:00',
   doors: '18:30',
   ends: '21:00',
   venue: 'kollectiv',
