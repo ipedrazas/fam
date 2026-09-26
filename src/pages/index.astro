@@ -12,22 +12,22 @@ const runningOrder = [
   {
     time: '18:30',
     what: 'Doors and the bar',
-    note: 'Come early rather than on the hour. Somebody will say hello to you, that is a rule, not a hope.',
+    note: 'Come early, rather than on the hour and somebody will welcome you.',
   },
   {
     time: '19:00',
     what: 'Someone shows something',
-    note: 'About half an hour, from a person who has actually made the thing. Slides optional. Finished work optional.',
+    note: 'Presentation for about half an hour from someone who has worked with AI. Slides optional. Finished work optional.',
   },
   {
     time: '19:30',
-    what: 'Questions, then the argument',
-    note: 'The questions are the point. We are not trying to build a room that agrees with itself.',
+    what: 'Followed by questions, then time to debate.',
+    note: 'Questions are important. It is not about agreeing.',
   },
   {
     time: '20:00',
-    what: 'The bit at the bar',
-    note: 'The last half hour is just people talking to each other. If you only stay for one part of the evening, make it this one.',
+    what: 'Bar',
+    note: 'The last half hour is for people to continue get to know each other and continue the conversations. If you only stay for one part of the evening, make it this one.',
   },
   {
     time: featuredEvent.ends,
@@ -43,7 +43,7 @@ const runningOrder = [
   image="/og/fam-og.png"
   luma
 >
-  <TitleCard line="Every 3rd Thursday of the month.">
+  <TitleCard line="Every 3rd Thursday">
     <p class="title-card__meta">
       FAM {String(featuredEvent.number).padStart(2, '0')} · <strong>{slate(start)}</strong>
       {` · ${time(start)} · ${featuredEvent.venue}, Folkestone`}
@@ -60,34 +60,69 @@ const runningOrder = [
       <h2 id="for-me">Is this for me?</h2>
       <div class="prose" style="margin-block-start: var(--space-m)">
         <p class="lede">
-          Almost certainly, yes, and you do not need to be technical. Not a bit, not
-          secretly, not "well, I did a course once".
+            This informal meet up is for anyone interested in Artificial Intelligence, especially
+            those working in the creative industries.
+
         </p>
         <p>
-          FAM is for everybody, but specially for people who make things: illustrators, filmmakers, producers, sound
-          people, designers, writers, anybody working in or around the creative industries that have
-          suddenly got a lot to argue about. You do not need to understand how any of this
-          works to have a useful opinion about what it is doing to your work, and the
-          people who do understand how it works are, on the whole, keen to explain it to you
-          at the bar.
+            Artists, Illustrators, Filmmakers, Producers, Sound engineers, Musicians, Designers, Writers, Photographers etc.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="for-me">
+    <div class="shell">
+      <h2 id="for-me">Do I need to know anything about AI?</h2>
+      <div class="prose" style="margin-block-start: var(--space-m)">
+        <p>
+            You do not need any technical knowledge, just curiosity and a desire to build{' '}
+            <strong>communities</strong>. You do not need to understand how it works to have an opinion about
+            what it is doing to your work, and the people who do understand how AI works are
+            keen to help you understand during the meet up.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="for-me">
+    <div class="shell">
+      <h2 id="for-me">Why come along?</h2>
+      <div class="prose" style="margin-block-start: var(--space-m)">
+        <p>
+            Some people come along because they are excited about new technologies and
+            developments, others are more sceptical, even disillusioned. All opinions are
+            welcome in the space, so long as differing points of view are respected, and space is
+            given for each person to share and listen to each other.
         </p>
         <p>
-          Some people coming are excited about all of it. Some are angry about all of it.
-          Quite a few will be both, on the same evening, about the same thing. All of that
-          is welcome, so long as you extend the same patience to the person standing next to
-          you that you would want extended to you.
+            Nobody is here to sell or recruit. This is a space to debate, discuss, share and
+            support each other to understand the AI landscape. We will be working things out
+            together.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="for-me">
+    <div class="shell">
+      <h2 id="for-me">What facilities are there?</h2>
+      <div class="prose" style="margin-block-start: var(--space-m)">
         <p>
-          Nobody is selling anything from the front. There is no recruiter working the room
-          and no pitch at the end. It is a room, some chairs, a projector and a bar.
+            There is a bar and participants are encouraged to continue the conversation after the
+            talk.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="for-me">
+    <div class="shell">
+      <h2 id="for-me">Code of conduct</h2>
+      <div class="prose" style="margin-block-start: var(--space-m)">
         <p>
-          And since this is the very first one: there is no in-crowd to be outside of.
-          Everybody there will be working out what it is at the same time you are.
-        </p>
-        <p>
-          If it helps to know where the line is before you come:{' '}
-          <a href="/code-of-conduct">read the code of conduct</a>. It is short and we mean it.
+            If it helps to know where the line is before you come: <a href="/code-of-conduct">read the code of conduct</a>. It is
+            short and we mean it.
         </p>
       </div>
     </div>
@@ -119,7 +154,7 @@ const runningOrder = [
   <!-- Next event -->
   <section class="band band--rebate" aria-labelledby="next">
     <div class="shell">
-      <h2 id="next">The first one</h2>
+      <h2 id="next">The next one</h2>
       <p class="lede" style="margin-block-start: var(--space-s); max-width: 46ch">
         {featuredEvent.title}
       </p>
