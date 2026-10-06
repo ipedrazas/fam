@@ -1,6 +1,6 @@
 # Code of conduct
 
-FAM is a room full of people who disagree with each other. That is the point of it, and it
+AIM is a room full of people who disagree with each other. That is the point of it, and it
 only works if everybody in the room is safe to be there. This is the short version of how
 we keep that true.
 
@@ -41,7 +41,7 @@ comes out of it.
 ## If something happens
 
 Find Ivan, or any other organiser. You can also email
-[fam@andcake.dev](mailto:fam@andcake.dev) at any time, including anonymously from an
+[aim@andcake.dev](mailto:aim@andcake.dev) at any time, including anonymously from an
 address we won't recognise.
 
 You will be believed and taken seriously. We will not tell you what you should have done
@@ -62,4 +62,4 @@ Organisers are held to this more strictly than anybody else, not less.
 ---
 
 *Adapted from the practices of a lot of other meetups who worked this out before us. If
-you think something here is wrong or missing, tell us, [fam@andcake.dev](mailto:fam@andcake.dev).*
+you think something here is wrong or missing, tell us, [aim@andcake.dev](mailto:aim@andcake.dev).*

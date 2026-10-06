@@ -15,7 +15,7 @@ const pastEvents = defineCollection({
   loader: glob({ pattern: '*.md', base: './src/content/past-events' }),
   schema: ({ image }) =>
     z.object({
-      /** FAM 01, FAM 02… shown in the sheet header. */
+      /** AIM 01, AIM 02… shown in the sheet header. */
       number: z.number().int().positive(),
       title: z.string().min(1),
       date: z.coerce.date(),

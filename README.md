@@ -1,4 +1,4 @@
-# FAM, Folkestone AI Meetup
+# AIM, Folkestone AI Meetup
 
 The website for a monthly meetup in Folkestone. Six pages, no database, no backend, no
 accounts, no cookies. Everything about the site is a file in this repository.
@@ -165,5 +165,5 @@ Three, all OFL, all self-hosted from npm:
 
 ## Licence
 
-Code: MIT, see `LICENSE`. The photographs and written content are not, they belong to FAM
+Code: MIT, see `LICENSE`. The photographs and written content are not, they belong to AIM
 and the people in them.

@@ -16,7 +16,7 @@ import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { decompress } from 'wawoff2';
 
-const CACHE = resolve('node_modules/.cache/fam-fonts');
+const CACHE = resolve('node_modules/.cache/aim-fonts');
 const OUT = resolve('public/og');
 
 const FACES = {
@@ -95,7 +95,7 @@ function card({ title, kicker }) {
   <rect width="${W}" height="${H}" fill="${REBATE}"/>
 
   <g transform="translate(${PAD} 84)">
-    <text x="0" y="0" font-family="Redaction 20" font-size="54" fill="${SHEET}">FAM</text>
+    <text x="0" y="0" font-family="Redaction 20" font-size="54" fill="${SHEET}">AIM</text>
     <g transform="translate(-26 -50) rotate(-3 78 34)">
       <path d="M8,36 C7,18 33,8 53,7 C75,6 94,15 94,33 C94,51 73,61 51,61 C29,61 10,54 8,37 C7,29 12,20 22,13"
             fill="none" stroke="${SELECT}" stroke-width="3.5" stroke-linecap="round" opacity="0.95"/>
@@ -115,7 +115,7 @@ function card({ title, kicker }) {
 
 const CARDS = [
   {
-    file: 'fam-og.png',
+    file: 'aim-og.png',
     title: 'You do not need to be technical. You need to be curious.',
     kicker: 'Folkestone AI Meetup · Monthly, in Folkestone',
   },
@@ -132,7 +132,7 @@ const CARDS = [
   {
     file: 'about.png',
     title: 'What this is, and whether you are welcome. You are.',
-    kicker: 'About FAM · Folkestone AI Meetup',
+    kicker: 'About AIM · Folkestone AI Meetup',
   },
 ];
 

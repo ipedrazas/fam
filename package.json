@@ -1,9 +1,9 @@
 {
-  "name": "fam",
+  "name": "aim",
   "type": "module",
   "version": "0.1.0",
   "private": true,
-  "description": "FAM \u2014 Folkestone AI Meetup",
+  "description": "AIM \u2014 Folkestone AI Meetup",
   "scripts": {
     "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
     "start": "ASTRO_TELEMETRY_DISABLED=1 astro dev",

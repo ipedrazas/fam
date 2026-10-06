@@ -4,9 +4,9 @@
 #
 # Put a reverse proxy (Caddy, Traefik, or nginx on the host) in front of this for TLS.
 services:
-  fam:
+  aim:
     image: ghcr.io/ipedrazas/fam:latest
-    container_name: fam
+    container_name: aim
     restart: unless-stopped
     ports:
       # host:container — the proxy in front of this terminates TLS on 443.
