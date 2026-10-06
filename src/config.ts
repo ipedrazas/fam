@@ -9,15 +9,15 @@
  */
 
 export const site = {
-  url: 'https://fam.andcake.dev',
-  name: 'FAM',
-  fullName: 'FAM — Folkestone AI Meetup',
+  url: 'https://aim.andcake.dev',
+  name: 'AIM',
+  fullName: 'AIM — Folkestone AI Meetup',
   /** Used as the default meta description and in the footer. */
   tagline:
     'A monthly evening in Folkestone for people interested on AI. No technical knowledge necessary.' +
     'Everybody is welcome: artists, filmmakers, ' +
     'producers, designers, developers, students, and anyone who are curious, sceptical, or somewhere in between about AI.',
-  email: 'fam@andcake.dev',
+  email: 'aim@andcake.dev',
 } as const;
 
 export const luma = {
@@ -41,7 +41,7 @@ export const luma = {
  * the calendar instead of showing a checkout button — nothing breaks, nobody sees an error.
  */
 export const featuredEvent = {
-  /** Which FAM this is. This is the first one. */
+  /** Which AIM this is. This is the first one. */
   number: 2,
   title: 'Practical AI',
   /** ISO 8601, local time. */
@@ -86,7 +86,7 @@ export const venueAccess = {
 export const analytics = {
   enabled: false,
   provider: 'plausible' as 'plausible' | 'umami',
-  domain: 'fam.andcake.dev',
+  domain: 'aim.andcake.dev',
   scriptUrl: 'https://plausible.io/js/script.js',
 } as const;
 
