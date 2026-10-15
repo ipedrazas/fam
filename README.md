@@ -1,4 +1,4 @@
-# AIM, Folkestone AI Meetup
+# Folkestone AI Meetup
 
 The website for a monthly meetup in Folkestone. Six pages, no database, no backend, no
 accounts, no cookies. Everything about the site is a file in this repository.

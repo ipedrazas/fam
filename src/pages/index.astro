@@ -38,14 +38,14 @@ const runningOrder = [
 ---
 
 <Base
-  title="AIM, Folkestone AI Meetup"
+  title="Folkestone AI Meetup"
   description="A monthly evening in Folkestone for artists, filmmakers, producers and designers who are curious, sceptical, or somewhere in between about AI. The first one is on 10 September. Free, no code, everyone welcome."
   image="/og/aim-og.png"
   luma
 >
   <TitleCard line="Every 3rd Thursday">
     <p class="title-card__meta">
-      AIM {String(featuredEvent.number).padStart(2, '0')} · <strong>{slate(start)}</strong>
+    {String(featuredEvent.number).padStart(2, '0')} · <strong>{slate(start)}</strong>
       {` · ${time(start)} · ${featuredEvent.venue}, Folkestone`}
     </p>
     <div class="title-card__actions">

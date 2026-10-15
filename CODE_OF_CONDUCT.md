@@ -1,6 +1,6 @@
 # Code of conduct
 
-AIM is a room full of people who disagree with each other. That is the point of it, and it
+AI Folkestone Meetup is a room full of people who disagree with each other. That is the point of it, and it
 only works if everybody in the room is safe to be there. This is the short version of how
 we keep that true.
 
