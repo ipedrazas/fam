@@ -10,14 +10,14 @@
 
 export const site = {
   url: 'https://fam.andcake.dev',
-  name: 'FAM',
-  fullName: 'FAM — Folkestone AI Meetup',
+  name: 'AI Folkestone',
+  fullName: 'Folkestone AI Meetup',
   /** Used as the default meta description and in the footer. */
   tagline:
     'A monthly evening in Folkestone for people interested on AI. No technical knowledge necessary.' +
     'Everybody is welcome: artists, filmmakers, ' +
     'producers, designers, developers, students, and anyone who are curious, sceptical, or somewhere in between about AI.',
-  email: 'fam@andcake.dev',
+  email: 'info@aifolkestone.com',
 } as const;
 
 export const luma = {
