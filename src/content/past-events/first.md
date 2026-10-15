@@ -19,7 +19,7 @@ links:                 # optional, slides, recordings, things people made
     url: https://knotes.andcake.dev
 ---
 
-First FAM event and what a night! We were expecting 5 people and 20 of you showed up!
+First AIM event and what a night! We were expecting 5 people and 20 of you showed up!
 
 Besides the initial suprise and the usual technical issues, we kicked off a great night to learn, share and connect with other people. We are very excited about this community we hope to grow and nurture little by little with the help of all of you.
 

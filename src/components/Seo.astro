@@ -10,7 +10,7 @@ interface Props {
   noindex?: boolean;
 }
 
-const { title, description, image = '/og/fam-og.png', noindex = false } = Astro.props;
+const { title, description, image = '/og/aim-og.png', noindex = false } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname.replace(/\/$/, '') || '/', site.url).href;
 const ogImage = new URL(image, site.url).href;
