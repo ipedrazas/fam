@@ -42,17 +42,17 @@ export const luma = {
  */
 export const featuredEvent = {
   /** Which AIM this is. This is the first one. */
-  number: 2,
-  title: 'Practical AI',
+  number: 3,
+  title: 'Chat AI',
   /** ISO 8601, local time. */
-  start: '2026-10-15T18:30:00+01:00',
+  start: '2026-11-19T18:30:00+01:00',
   doors: '18:30',
   ends: '21:00',
   venue: 'kollectiv',
   venueAddress: '69 The Old High St, Folkestone CT20 1RN',
   cost: 'Free',
   lumaEventUrl: 'https://luma.com/f6298pbr',
-  lumaEventId: 'evt-vdvAcm4yeTstmKs',
+  lumaEventId: 'evt-zljMvwDuzk24Ghy',
 } as const;
 
 /**
